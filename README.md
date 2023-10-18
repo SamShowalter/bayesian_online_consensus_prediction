@@ -1,2 +1,2 @@
-# bayesian_online_consensus_prediction
+# Bayesian Online Learning for Consensus Prediction
 Code for AI Stats Submission "Bayesian Online Learning for Consensus Prediction"
