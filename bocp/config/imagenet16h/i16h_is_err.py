@@ -15,8 +15,7 @@ import numpy as np
 dynamic_args = {
     "seq_len" : [4800],
     "num_experts" : [3, 6],
-    "num_models": [1], #[1],
-    # "des_model_perfs" : [[k] for k in [  0.45, 0.65,0.85]],
+    "num_models": [1],
     "des_model_perfs" : [[k] for k in [  0.5, 0.7, 0.9]],
 }
 
@@ -31,7 +30,7 @@ sel_method_param_lkp = {
 }
 
 model_hyperparams = {
-    "posterior_error_rate": list(np.arange(0.70,1.0,0.04)) + list(np.arange(0,1.0,0.04)),
+    "posterior_error_rate": list(np.arange(0,1.0,0.05)),
 }
 
 #################################################################################
@@ -44,20 +43,13 @@ base_args = {
     "dataset" : "imagenet16h",
     "disable_tqdm": False,
     "num_classes": 16,
-    "synthetic_experts" : False,
-    "synthetic_models" : False,
     "seed":5,
-    "noise_experts" : False,
-    "noise_models" : False,
     "model_query_perc": 1.0,
     "n_trials" : 1,
     "device": f"cuda:{DEVICE}",
     "model_cost": 0,
     "expert_cost": 1,
-    "preset_budget": False,
-    "budget_percent_of_full": 0,
     "rand_model_query_perc": 1,
-    "class_specific_belief": False,
     "model_id_sel_method": "perf",
 
    # Parameters for proposed method

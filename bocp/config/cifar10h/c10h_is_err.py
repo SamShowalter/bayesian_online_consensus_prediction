@@ -14,14 +14,11 @@ import numpy as np
 # 45
 dynamic_args = {
     "seq_len" : [10000],
-    # "num_experts" : [10,50],
     "num_experts" : [3, 10, 50],
-    "num_models": [1], #[1],
+    "num_models": [1],
     "des_model_perfs" : [[k] for k in [ 0.5, 0.7,0.9]],
 }
 
-
-# 45 * 6 * 5 = 45*30 = 450*3 = 1350
 sel_pred_methods = [
         ["mhg","mhg"],
     ]
@@ -31,10 +28,7 @@ sel_method_param_lkp = {
 }
 
 model_hyperparams = {
-    # "posterior_error_rate": list(np.arange(0.05,1,0.05))
-    "posterior_error_rate": list(np.arange(0.70,1.0,0.04)) + list(np.arange(0,1.0,0.05)) + list(np.arange(0,0.12,0.01)),
-    # "posterior_error_rate": list(np.arange(0.025,1,0.05))
-    # "posterior_error_rate": list(0.125 + np.arange(0,0.85,0.05)),
+    "posterior_error_rate": list(np.arange(0,1.0,0.05)),
 }
 
 #################################################################################

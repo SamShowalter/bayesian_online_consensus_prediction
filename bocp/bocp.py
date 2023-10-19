@@ -18,7 +18,6 @@ import torch.nn.functional as F
 import logging
 from tqdm import tqdm
 import numpy as np
-from numba import njit, prange
 import itertools
 
 from arguments import get_args, adjust_args, setup_ocp_args
@@ -244,7 +243,6 @@ class OnlineConsensusPredictionSimulation(object):
 #######################################################################
 
 def main(logger,dataset, prior_method, prior_heur="err", inf_method=None):
-    model_reps = None
     args = get_args()
 
     args.dataset = dataset
@@ -262,14 +260,11 @@ def main(logger,dataset, prior_method, prior_heur="err", inf_method=None):
     for config_comb in config_combs:
         config = zip_dict(base_args, config_comb)
         args = adjust_args(args,config)
-        args.disable_tqdm=False
+        args.mhg_learn_bias=True
+        args.check_if_exists = True
         args.n_trials = 1
 
-        args.mhg_learn_bias=True
-
-        args.check_if_exists = True
         setup_ocp_args(args)
-
         logger = setup_logger(args)
         logger.info("====="*10)
         logger.info("Experiment Arguments")
@@ -278,8 +273,6 @@ def main(logger,dataset, prior_method, prior_heur="err", inf_method=None):
         if args.seed is not None:
             set_seed(args)
 
-        # # Expert keys - expert_preds, targets, expert_acc, expert_ideal_acc
-        # # Model keys - confs, preds model_acc, model_ideal_acc
         print_args(dict(args._get_kwargs()))
         # sys.exit(1)
         logger.info("====="*10)
@@ -291,4 +284,31 @@ def main(logger,dataset, prior_method, prior_heur="err", inf_method=None):
         oms = OnlineConsensusPredictionSimulation(args)
 
         oms.simulate()
+
+def main_single_run():
+    args = get_args()
+
+    setup_ocp_args(args)
+    logger = setup_logger(args)
+    logger.info("====="*10)
+    logger.info("Experiment Arguments")
+    logger.info("====="*10)
+
+    if args.seed is not None:
+        set_seed(args)
+
+    print_args(dict(args._get_kwargs()))
+    logger.info("====="*10)
+    logger.info("Beginning Simulation for:")
+    logger.info(f" - Experiment: {args.experiment_name}")
+    logger.info(f" - Sel. Method: {args.sel_method}")
+    logger.info(f" - Pred Method: {args.pred_method}")
+    logger.info("====="*10)
+    oms = OnlineConsensusPredictionSimulation(args)
+
+    oms.simulate()
+
+
+if __name__ == "__main__":
+    main_single_run()
 

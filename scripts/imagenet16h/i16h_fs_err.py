@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 main(logger,
      "imagenet16h",
-     "finset", "err")
+     "finset", "err", "finset")
 
 
 

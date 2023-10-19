@@ -4,7 +4,6 @@ import sys
 # Other internal imports - from utils package
 from utils.data import zip_expert_data, zip_model_data, select_models
 
-# Synthetic
 from .filepath import FilepathDataset
 from .cifar_10h import Cifar10H
 from .imagenet_16h import Imagenet16H
@@ -40,7 +39,6 @@ def get_data(args):
         expert_generator.get_data(true_targets)
         synth_expert_data = expert_generator.data
         data = zip_expert_data(data, synth_expert_data)
-        # sys.exit(1)
 
     if args.model_data == "synthetic":
         assert args.target_model_perf is not None and (

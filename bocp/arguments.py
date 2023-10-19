@@ -42,13 +42,13 @@ def _str2arr(arr):
 
 def get_data_args(parser):
 
-    parser.add_argument('--num-classes', default=10, type=int,
+    parser.add_argument('--num-classes', default=16, type=int,
                         help='Number of classes')
     parser.add_argument('--total-num-samples', default=10000, type=int,
                         help='Total number of samples if generated synthetically')
     parser.add_argument('--true-target-dist', default=None, type=_str2arr,
                         help='Total number of samples if generated synthetically')
-    parser.add_argument('--dataset', default='cifar10', type=str,
+    parser.add_argument('--dataset', default='imagenet16h', type=str,
                         help='Type of dataset')
     parser.add_argument('--data-path', default=None, type=str,
                         help='Path to dataset if relevant')
@@ -175,7 +175,7 @@ def get_model_args(parser):
 def get_ocp_args(parser):
     parser.add_argument('--seq-len', default=1000, type=int,
                         help='Sequence length for simulation')
-    parser.add_argument('--n-trials', default=10, type=int,
+    parser.add_argument('--n-trials', default=1, type=int,
                         help='Number of trials per method')
     parser.add_argument('--sel-method', type=str, default='random',
                         help='Selection method for Online Consensus Prediction (OCP)')
@@ -193,7 +193,7 @@ def get_ocp_args(parser):
                         help="Percent of total annotation budget to use")
     parser.add_argument('--num-experts',default=3,
                         help="Number of (human) experts")
-    parser.add_argument('--num-models',default=10,
+    parser.add_argument('--num-models',default=1,
                         help="Number of models")
     parser.add_argument('--num-model-queries',default=None,
                         help="Number of model queries (either None or set to max)")

@@ -15,29 +15,27 @@ import numpy as np
 dynamic_args = {
     "seq_len" : [4800],
     "num_experts" : [3, 6],
-    "num_models": [1], #[1],
+    "num_models": [1],
     "des_model_perfs" : [[k] for k in [  0.5, 0.7, 0.9]],
-    # "des_model_perfs" : [[k] for k in [  0.45, 0.65,0.85]],
 }
 
 
-# 45 * 6 * 5 = 45*30 = 450*3 = 1350
 sel_pred_methods = [
+        ["entropy","ftl"],
         ["random","even_weight"],
-        ["qbc","ftl"],
         ["mp","mp"],
     ]
 
 sel_method_param_lkp = {
     "mp": "mp_tuning_param",
-    "qbc": "qbc_entropy_tuning_param",
-    "random": "rand_expert_query_perc", # Need to add this parameter to random
+    "entropy": "entropy_tuning_param",
+    "random": "rand_expert_query_perc",
 }
 
 model_hyperparams = {
-    "rand_expert_query_perc": list(np.arange(0.005,1,0.01)),
-    "qbc_entropy_tuning_param": list(np.arange(0,10,0.2)) + [ 50, 100,500, 1000, 10000, 50000, 100000, 1e10],
-    "mp_tuning_param": list(np.arange(0,10,0.2))+ [10, 50, 100,500, 1000, 10000, 50000, 100000, 1e10],
+    "rand_expert_query_perc": list(np.arange(0,1,0.05)),
+    "entropy_tuning_param": list(np.arange(0,10,0.5)),
+    "mp_tuning_param": list(np.arange(0,10,0.5)),
 }
 
 #################################################################################
