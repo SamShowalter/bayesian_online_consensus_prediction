@@ -294,7 +294,7 @@ def setup_ocp_args(args):
          f"s.rand.e{args.rand_expert_query_perc}-" +
          f"s.entropy{args.entropy_tuning_param}-" +
          f"s.mp{args.mp_tuning_param}-" +
-         f"s.mhg.prior.{(args.prior_method.replace('baselines','') + '_' + args.inference_method if args.inference_method is not None else '')}-" +
+         f"s.mhg.prior.{(args.prior_method.replace('baselines','') + ('_' + args.inference_method if args.inference_method is not None else ''))}-" +
          f"s.mhg.h{args.prior_heur}-" +
          f"s.mhg.p{compute_mhg_param(args)}-" +
          f"igt{int(args.iterative_expert_gt)}-rs{args.seed}-" +

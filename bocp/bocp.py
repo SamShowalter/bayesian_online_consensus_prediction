@@ -252,9 +252,8 @@ def main(logger,dataset, prior_method, prior_heur="err", inf_method=None):
     base_args, config_combs = get_configs(globals(),args)
     args.prior_method = prior_method
     args.prior_heur = prior_heur
-    if inf_method==None:
+    if inf_method is not None:
         args.inference_method = args.prior_method
-    else: args.inference_method = inf_method
 
     config = None
     for config_comb in config_combs:
@@ -263,6 +262,11 @@ def main(logger,dataset, prior_method, prior_heur="err", inf_method=None):
         args.mhg_learn_bias=True
         args.check_if_exists = True
         args.n_trials = 1
+        args.dataset=dataset
+        args.prior_method = prior_method
+        args.prior_heur = prior_heur
+        if inf_method is not None:
+            args.inference_method = args.prior_method
 
         setup_ocp_args(args)
         logger = setup_logger(args)
