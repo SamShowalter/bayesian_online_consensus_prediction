@@ -1,5 +1,7 @@
 # Bayesian Online Learning for Consensus Prediction
-Code for AI Stats Submission "Bayesian Online Learning for Consensus Prediction"
+This is the code for _Bayesian Online Learning for Consensus Prediction_.
+
+[Arxiv](https://arxiv.org/abs/2312.07679)
 
 ## Setup
 
